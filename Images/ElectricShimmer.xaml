@@ -1,0 +1,47 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <DataTemplate x:Key="ElectricShimmer">
+        <Viewbox Stretch="Uniform" RenderOptions.BitmapScalingMode="Fant">
+            <Canvas Name="svg" Width="88.230003" Height="100.824">
+                <Canvas.Resources>
+                    <LinearGradientBrush x:Key="linearGradientColor" MappingMode="RelativeToBoundingBox" StartPoint="0,0" EndPoint="1,1">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FFB4F0E6" Offset="0"/>
+                                <GradientStop Color="#00B4F0E6" Offset="1"/>
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="linearGradient" MappingMode="Absolute" StartPoint="20,11" EndPoint="20,35">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FFB4F0E6" Offset="0"/>
+                                <GradientStop Color="#00B4F0E6" Offset="1"/>
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                        <LinearGradientBrush.Transform>
+                            <MatrixTransform Matrix="2.1630394 0 0 2.1630394 0.00952143 0.4122082"/>
+                        </LinearGradientBrush.Transform>
+                    </LinearGradientBrush>
+                </Canvas.Resources>
+                <Canvas Name="layer">
+                    <Path Name="whiteHexagon" Fill="#FFFFFFFF">
+                        <Path.Data>
+                            <PathGeometry Figures="M 1.1333551 24.633869 42.657529 0.31415056 a 2.291359 2.291359 179.64351 0 1 2.291315 -0.0142565 L 86.772425 24.101024 a 2.291359 2.291359 59.64351 0 1 1.158004 1.977208 l 0.299409 48.120848 a 2.2913589 2.2913589 119.64351 0 1 -1.133311 1.991465 L 45.572352 100.51027 a 2.2913588 2.2913588 179.64351 0 1 -2.291315 0.0142 L 1.4574562 76.723392 A 2.291359 2.291359 59.643511 0 1 0.29945238 74.746184 L 4.4351138e-5 26.625334 A 2.2913589 2.2913589 119.64351 0 1 1.1333551 24.633869 Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="gradientHexagon" Fill="{StaticResource linearGradient}">
+                        <Path.Data>
+                            <PathGeometry Figures="M 22.559355 36.964578 42.581121 25.238307 a 2.2913591 2.2913591 179.64351 0 1 2.291315 -0.01426 l 20.166132 11.476222 a 2.2913582 2.2913582 59.643516 0 1 1.158004 1.977208 l 0.14436 23.202496 a 2.2913595 2.2913595 119.64352 0 1 -1.133311 1.991465 L 45.185854 75.597712 a 2.2913589 2.2913589 179.64351 0 1 -2.291315 0.01426 L 22.728408 64.135745 a 2.2913585 2.2913585 59.643518 0 1 -1.158004 -1.977208 l -0.14436 -23.202494 a 2.2913595 2.2913595 119.64352 0 1 1.133311 -1.991465 z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                    <Path Name="drElectron" Fill="#FFFFFF00" StrokeThickness="2.54577">
+                        <Path.Data>
+                            <PathGeometry Figures="M 46.442669 44.110097 63.11051 0 29.077543 51.950736 41.680431 56.712939 25.012618 100.823 59.045517 48.872324 Z" FillRule="NonZero"/>
+                        </Path.Data>
+                    </Path>
+                </Canvas>
+            </Canvas>
+        </Viewbox>
+    </DataTemplate>
+</ResourceDictionary>

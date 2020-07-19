@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="ElectricShimmer.Controls.SettingsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:ElectricShimmer.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="1080" d:DesignWidth="1920">
+    <UserControl.Resources>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+        <converter:BoolToVisibilityConverter x:Key="BoolToVisibilityInverter" FalseValue="Visible" TrueValue="Collapsed"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,10,0">
+                    <TextBox VerticalContentAlignment="Bottom" md:HintAssist.Hint="Your Seed is as Base58 encoded string" Focusable="False" IsHitTestVisible="False" Visibility="{Binding IsPasswordVisible, Converter={StaticResource BoolToVisibilityInverter}}" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                    <TextBox Text="{Binding Seed, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Bottom" md:HintAssist.Hint="Seed as Base58 encoded string" Visibility="{Binding IsPasswordVisible, Converter={StaticResource BoolToVisibility}}" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                </StackPanel>
+                <ToggleButton DockPanel.Dock="Left" HorizontalAlignment="Right" IsChecked="{Binding IsPasswordVisible}" Style="{StaticResource MaterialDesignActionToggleButton}">
+                    <ToggleButton.Content>
+                        <md:PackIcon Kind="Visibility" />
+                    </ToggleButton.Content>
+                    <md:ToggleButtonAssist.OnContent>
+                        <md:PackIcon Kind="VisibilityOff" />
+                    </md:ToggleButtonAssist.OnContent>
+                </ToggleButton>
+                <Button Command="{Binding GenerateSeedCommand}" 
+                        DockPanel.Dock="Right" 
+                        MaxWidth="160" 
+                        Content="Generate New Seed" 
+                        md:ButtonProgressAssist.IsIndicatorVisible="{Binding IsIndicatorVisible}"
+                        md:ButtonProgressAssist.IsIndeterminate="True"
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
+                <Grid/>
+            </DockPanel>
+            <TextBox Text="{Binding NodeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="1" md:HintAssist.Hint="Node Address" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+        </Grid>
+    </Grid>
+</UserControl>

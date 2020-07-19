@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="Dr.Electron.svg"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   id="svg846"
+   version="1.1"
+   viewBox="0 0 1232.8741 283.51598"
+   height="283.51599mm"
+   width="1232.874mm">
+  <defs
+     id="defs840" />
+  <sodipodi:namedview
+     inkscape:window-maximized="1"
+     inkscape:window-y="-8"
+     inkscape:window-x="-8"
+     inkscape:window-height="1002"
+     inkscape:window-width="1920"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="1226.7792"
+     inkscape:cx="1227.4559"
+     inkscape:zoom="0.1767767"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="1"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#1e1e1e"
+     id="base"
+     inkscape:snap-intersection-paths="true" />
+  <metadata
+     id="metadata843">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Ebene 1">
+    <path
+       style="fill:#ffff00;stroke-width:20"
+       d="m 97.530997,17.773036 -7.17269,18.982299 C 102.23941,44.830635 110,58.456735 110,73.999575 110,97.562535 92.16571,116.72178 69.174072,118.80821 l -12.845727,19.60862 c 2.83827,0.38184 5.732439,0.58292 8.671822,0.58292 35.780063,0 64.999643,-29.22011 64.999643,-65.000175 0,-23.94478 -13.08759,-44.94925 -32.468813,-56.226539 z"
+       id="circleRight" />
+    <path
+       style="fill:#00ffff;stroke-width:20"
+       d="M 65.000167,8.999929 C 29.220103,8.999929 0,38.219515 0,73.999575 0,98.344545 13.529912,119.64897 33.447055,130.78215 l 7.144781,-18.90891 C 28.175851,103.88836 19.999812,89.953105 19.999813,73.999575 c 0,-24.15238 18.737032,-43.67937 42.560192,-44.9342 L 75.179389,9.802463 C 71.86098,9.275947 68.461912,8.999926 65.000167,8.999929 Z"
+       id="circleLeft" />
+    <path
+       id="drElectron"
+       d="M 68.813055,65.481045 93.556307,0 43.034665,77.120415 61.743522,84.189945 37.000307,149.671 87.521911,72.550555 Z"
+       style="fill:#ffff00;stroke-width:3.77953" />
+    <text
+       id="text835"
+       y="118.91125"
+       x="136.20357"
+       style="font-size:132.292px;line-height:1.25;font-family:electrical;-inkscape-font-specification:electrical;letter-spacing:0px;word-spacing:0px;fill:#ffff00;fill-opacity:1;stroke-width:0.265;stroke-miterlimit:10;stroke-dasharray:none"
+       xml:space="preserve"><tspan
+         style="fill:#ffff00;fill-opacity:1;stroke-width:0.265;stroke-miterlimit:10;stroke-dasharray:none"
+         y="118.91125"
+         x="136.20357"
+         id="tspan833"
+         sodipodi:role="line">r</tspan></text>
+    <text
+       id="text839"
+       y="261.74731"
+       x="-2.3898017"
+       style="font-size:132.292px;line-height:1.25;font-family:electrical;-inkscape-font-specification:electrical;letter-spacing:0px;word-spacing:0px;fill:#ffff02;fill-opacity:1;stroke-width:0.264583"
+       xml:space="preserve"><tspan
+         style="fill:#ffff02;fill-opacity:1;stroke-width:0.264583"
+         y="261.74731"
+         x="-2.3898017"
+         id="tspan837"
+         sodipodi:role="line">Electron</tspan></text>
+  </g>
+</svg>

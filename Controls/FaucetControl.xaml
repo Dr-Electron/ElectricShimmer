@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="ElectricShimmer.Controls.FaucetControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button Command="{Binding RequestFaucetCommand}"
+                    DockPanel.Dock="Right" 
+                    MaxWidth="160" 
+                    Content="Request from faucet" 
+                    md:ButtonProgressAssist.IsIndicatorVisible="{Binding IsIndicatorVisible}"
+                    md:ButtonProgressAssist.IsIndeterminate="True"
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
+        </Grid>
+    </Grid>
+</UserControl>
