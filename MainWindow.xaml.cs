@@ -109,7 +109,7 @@ namespace ElectricShimmer
             try
             {
                 Github goshimmer = new Github("https://api.github.com/repos/iotaledger/goshimmer/releases");
-                GithubObjects.Releases.Assets app = goshimmer.GetReleasebyVersion().assets.Where(x => x.name.Contains("cli-wallet_Windows")).ToList()[0];
+                GithubObjects.Releases.Assets app = goshimmer.GetReleasebyVersion("v0.2.1").assets.Where(x => x.name.Contains("cli-wallet_Windows")).ToList()[0];
                 string download_url = app.browser_download_url;
 
                 UpdateProgressBar.Visibility = Visibility.Visible;
