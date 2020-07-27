@@ -33,7 +33,7 @@ namespace ElectricShimmer.ViewModel
             set
             {
                 SetProperty(ref _selectedBalance, value);
-                SendColor = _selectedBalance.Color;
+                SendColor = _selectedBalance == null ? "IOTA" : _selectedBalance.Color;
             }
         }
 
@@ -48,6 +48,7 @@ namespace ElectricShimmer.ViewModel
         public int AssetAmount { get; set; }
         public string AssetName { get; set; }
         public string AssetSymbol { get; set; }
+
         private bool _isCreateIndicatorVisible; 
         public bool IsCreateIndicatorVisible 
         {
@@ -58,7 +59,13 @@ namespace ElectricShimmer.ViewModel
 
         #region Send
         public int SendAmount { get; set; }
-        public string SendColor { get; set; } = "IOTA";
+
+        private string _sendColor = "IOTA";
+        public string SendColor 
+        {
+            get => _sendColor;
+            set => SetProperty(ref _sendColor, value);
+        }
         public string SendAddress { get; set; }
 
         private bool _isSendIndicatorVisible;
@@ -91,6 +98,7 @@ namespace ElectricShimmer.ViewModel
             try
             {
                 IsCreateIndicatorVisible = true;
+
                 ProcessStartInfo startinfo = new ProcessStartInfo()
                 {
                     RedirectStandardOutput = true,
@@ -153,10 +161,10 @@ namespace ElectricShimmer.ViewModel
                     }
                     else if (error.Length <= 2)
                     {
+                        UpdateBalance();
                         Application.Current.Dispatcher.Invoke(async () =>
                         {
                             MessageBoxResult result = (MessageBoxResult)await DialogHost.Show(new Controls.MaterialMessageBox("Creation of Assets was succesful", "Created Assets", MessageBoxButton.OK), "MainDialogHost");
-
                         });
                     }
                     else //Unspecified error
@@ -283,7 +291,9 @@ namespace ElectricShimmer.ViewModel
         {
             try
             {
+
                 IsSendIndicatorVisible = true;
+
                 ProcessStartInfo startinfo = new ProcessStartInfo()
                 {
                     RedirectStandardOutput = true,
@@ -353,6 +363,7 @@ namespace ElectricShimmer.ViewModel
                         Application.Current.Dispatcher.Invoke(async () =>
                         {
                             DialogHost.CloseDialogCommand.Execute(null, null);
+                            UpdateBalance();
                             MessageBoxResult result = (MessageBoxResult)await DialogHost.Show(new Controls.MaterialMessageBox("Funds where send successfully", "Sending successful", MessageBoxButton.OK), "MainDialogHost");
                         });
                     }

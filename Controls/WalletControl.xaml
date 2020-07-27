@@ -43,9 +43,8 @@
         <Expander Margin="5" Grid.Row="1" Header="Create asset">
             <StackPanel>
                 <TextBox Text="{Binding AssetAmount}" md:HintAssist.Hint="Amount" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-                <TextBox Text="" md:HintAssist.Hint="Name" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-                <TextBox Text="" md:HintAssist.Hint="Symbol" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
-                <Button Content="Create" Command="{Binding CreateAssetCommand}" Margin="5" Style="{StaticResource MaterialDesignFlatButton}"/>
+                <TextBox Text="{Binding AssetName}" md:HintAssist.Hint="Name" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                <TextBox Text="{Binding AssetSymbol}" md:HintAssist.Hint="Symbol" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
                 <Button Content="Create" 
                         Command="{Binding CreateAssetCommand}" 
                         Margin="5"
