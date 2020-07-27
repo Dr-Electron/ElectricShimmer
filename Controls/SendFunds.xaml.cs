@@ -44,11 +44,11 @@ namespace ElectricShimmer.Controls
             set => SetValue(AddressProperty, value);
         }
 
-        public static readonly DependencyProperty ProgressVisibilityProperty = DependencyProperty.Register("ProgressVisibility", typeof(Visibility), typeof(SendFunds));
-        public Visibility ProgressVisibility
+        public static readonly DependencyProperty IsIndicatorVisibleProperty = DependencyProperty.Register("IsIndicatorVisible", typeof(bool), typeof(SendFunds));
+        public bool IsIndicatorVisible
         {
-            get => (Visibility)GetValue(ProgressVisibilityProperty);
-            set => SetValue(ProgressVisibilityProperty, value);
+            get => (bool)GetValue(IsIndicatorVisibleProperty);
+            set => SetValue(IsIndicatorVisibleProperty, value);
         }
 
         public static readonly DependencyProperty SendCommandProperty = DependencyProperty.Register("SendCommand", typeof(ICommand), typeof(SendFunds));

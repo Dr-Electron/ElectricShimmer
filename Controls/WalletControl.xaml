@@ -36,7 +36,7 @@
                                         Amount="{Binding SendAmount}" 
                                         Color="{Binding SendColor}"
                                         Address="{Binding SendAddress}"
-                                        ProgressVisibility="{Binding SendProgressVisibility}"/>
+                                        IsIndicatorVisible ="{Binding IsSendIndicatorVisible}"/>
                 </Button.CommandParameter>
             </Button>
         </Grid>
@@ -46,6 +46,12 @@
                 <TextBox Text="" md:HintAssist.Hint="Name" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
                 <TextBox Text="" md:HintAssist.Hint="Symbol" Margin="5" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
                 <Button Content="Create" Command="{Binding CreateAssetCommand}" Margin="5" Style="{StaticResource MaterialDesignFlatButton}"/>
+                <Button Content="Create" 
+                        Command="{Binding CreateAssetCommand}" 
+                        Margin="5"
+                        md:ButtonProgressAssist.IsIndicatorVisible="{Binding IsCreateIndicatorVisible}"
+                        md:ButtonProgressAssist.IsIndeterminate="True"
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
             </StackPanel>
         </Expander>
         <TabControl Margin="5" SelectedIndex="{Binding SelectedTabIndex}" Style="{StaticResource MaterialDesignTabControl}" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2">

@@ -12,9 +12,10 @@
              Height="175" Width="300"
              Name="root">
     <UserControl.Resources>
-        <Style TargetType="Button" x:Key="CloseButton"  BasedOn="{StaticResource MaterialDesignFlatButton}">
+        <Style TargetType="Button" x:Key="CloseButton"  BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
             <Setter Property="Command" Value="{x:Static md:DialogHost.CloseDialogCommand}"/>
             <Setter Property="md:ShadowAssist.ShadowDepth" Value="Depth0"/>
+            <Setter Property="Margin" Value="10,0,10,0"/>
         </Style>
         <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignOutlinedTextFieldTextBox}">
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -46,7 +47,13 @@
             <TextBox md:HintAssist.Hint="Address" Text="{Binding Address, ElementName=root}" Grid.Row="1" Grid.ColumnSpan="2"/>
         </Grid>
         <UniformGrid Grid.Row="2" Margin="2" Rows="1">
-            <Button x:Name="bOK" Content="SEND" Command="{Binding SendCommand, ElementName=root}" Style="{StaticResource MaterialDesignFlatButton}"/>
+            <Button x:Name="bOK" 
+                    Content="SEND" 
+                    md:ButtonProgressAssist.IsIndicatorVisible="{Binding IsIndicatorVisible, ElementName=root}"
+                    md:ButtonProgressAssist.IsIndeterminate="True"
+                    Command="{Binding SendCommand, ElementName=root}" 
+                    Style="{StaticResource MaterialDesignRaisedAccentButton}" 
+                    Margin="10,0,10,0"/>
             <Button x:Name="bCANCEL" Content="CANCEL" CommandParameter="{x:Static MessageBoxResult.Cancel}" Style="{StaticResource CloseButton}"/>
         </UniformGrid>
         <Grid Grid.Row="1" Visibility="{Binding ProgressVisibility, ElementName=root, FallbackValue=Collapsed}" Grid.RowSpan="2" Background="{StaticResource MaterialDesignPaper}">

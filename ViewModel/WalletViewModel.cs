@@ -48,20 +48,24 @@ namespace ElectricShimmer.ViewModel
         public int AssetAmount { get; set; }
         public string AssetName { get; set; }
         public string AssetSymbol { get; set; }
+        private bool _isCreateIndicatorVisible; 
+        public bool IsCreateIndicatorVisible 
+        {
+            get => _isCreateIndicatorVisible;
+            set => SetProperty(ref _isCreateIndicatorVisible, value);
+        }
         #endregion
 
         #region Send
         public int SendAmount { get; set; }
         public string SendColor { get; set; } = "IOTA";
         public string SendAddress { get; set; }
-        private Visibility _sendProgressVisibility = Visibility.Collapsed; 
-        public Visibility SendProgressVisibility 
+
+        private bool _isSendIndicatorVisible;
+        public bool IsSendIndicatorVisible
         {
-            get => _sendProgressVisibility;
-            set
-            {
-                SetProperty(ref _sendProgressVisibility, value);
-            }
+            get => _isSendIndicatorVisible;
+            set => SetProperty(ref _isSendIndicatorVisible, value);
         }
         #endregion
 
@@ -86,6 +90,7 @@ namespace ElectricShimmer.ViewModel
         {
             try
             {
+                IsCreateIndicatorVisible = true;
                 ProcessStartInfo startinfo = new ProcessStartInfo()
                 {
                     RedirectStandardOutput = true,
@@ -112,6 +117,7 @@ namespace ElectricShimmer.ViewModel
                 };
                 process.Exited += (sender, args) =>
                 {
+                    IsCreateIndicatorVisible = false;
                     process.Dispose();
                     if (error.Contains("wallet"))
                     {
@@ -277,6 +283,7 @@ namespace ElectricShimmer.ViewModel
         {
             try
             {
+                IsSendIndicatorVisible = true;
                 ProcessStartInfo startinfo = new ProcessStartInfo()
                 {
                     RedirectStandardOutput = true,
@@ -303,6 +310,7 @@ namespace ElectricShimmer.ViewModel
                 };
                 process.Exited += (sender, args) =>
                 {
+                    IsSendIndicatorVisible = false;
                     process.Dispose();
                     if (error.Contains("wallet"))
                     {
