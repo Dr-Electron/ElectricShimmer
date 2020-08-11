@@ -49,7 +49,15 @@
                         Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
                 <Grid/>
             </DockPanel>
-            <TextBox Text="{Binding NodeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Grid.Row="1" md:HintAssist.Hint="Node Address" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+            <DockPanel Grid.Row="1" >
+                <TextBox Text="{Binding NodeAddress, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" md:HintAssist.Hint="Node Address" Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"/>
+                <Button Command="{Binding GetServerStatusCommand}"
+                        DockPanel.Dock="Right" 
+                        MaxWidth="160" 
+                        Content="Server Status" 
+                        Style="{StaticResource MaterialDesignRaisedAccentButton}"/>
+                <Grid/>
+            </DockPanel>
         </Grid>
     </Grid>
 </UserControl>
