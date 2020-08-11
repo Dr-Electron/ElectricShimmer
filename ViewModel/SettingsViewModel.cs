@@ -29,15 +29,12 @@ namespace ElectricShimmer.ViewModel
                 {
                     if (!IsPasswordVisible)
                         return null;
-                    string result;
                     byte[] bytes = File.ReadAllBytes("wallet.dat");
 
                     List<byte> byteList = new List<byte>(bytes);
-                    bytes = byteList.Where(c => c != 0).ToArray();
+                    bytes = byteList.Take(32).ToArray();
 
-                    result = Base58.Encode(bytes);
-
-                    return result;
+                    return Base58.Encode(bytes);
                 }
                 catch (FileNotFoundException)
                 {
