@@ -10,6 +10,7 @@ namespace ElectricShimmer.ViewModel
 
         public ViewModel() { }
 
+        public string cliWallet = ElectricShimmer.Config.CliExecName;
         protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
         {
             if (!EqualityComparer<T>.Default.Equals(field, newValue))

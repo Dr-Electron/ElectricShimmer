@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Threading;
 using Tommy;
@@ -26,6 +28,9 @@ namespace ElectricShimmer
         {
             InitializeComponent();
 
+            Config.Init();
+            Log.Level = Config.LogLevel;
+
             NavigationItems = new List<INavigationItem>()
             {
                 new FirstLevelNavigationItem() { Label = "Wallet", Icon = PackIconKind.Wallet, NavigationItemSelectedCallback = item => new WalletViewModel() },
@@ -38,20 +43,6 @@ namespace ElectricShimmer
                        DispatcherPriority.Loaded,
                        dispatcherTimer_Tick,
                        Application.Current.Dispatcher);
-
-            if (File.Exists("config.toml"))
-            {
-                using (StreamReader reader = new StreamReader(File.OpenRead("config.toml")))
-                {
-                    // Parse the table
-                    TomlTable table = TOML.Parse(reader);
-
-                    if (table.HasKey("Logger"))
-                    {
-                        LogLevel.TryParse((string)table["Logger"]["LogLevel"], out Log.Level);
-                    }
-                }
-            }
         }
 
         private async void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -60,18 +51,7 @@ namespace ElectricShimmer
             {
                 (sender as DispatcherTimer).Stop();
 
-                bool IsUpdateEnabled = true;
-                if (File.Exists("config.toml"))
-                {
-                    using (StreamReader reader = new StreamReader(File.OpenRead("config.toml")))
-                    {
-                        // Parse the table
-                        TomlTable table = TOML.Parse(reader);
-
-                        if (table.HasKey("AutoUpdate"))
-                            IsUpdateEnabled = table["AutoUpdate"]["enabled"];
-                    }
-                }
+                bool IsUpdateEnabled = Config.IsUpdateEnabled;
 
                 if (IsUpdateEnabled && Updater.CheckUpdate())
                 {
@@ -109,7 +89,7 @@ namespace ElectricShimmer
             try
             {
                 Github goshimmer = new Github("https://api.github.com/repos/iotaledger/goshimmer/releases");
-                GithubObjects.Releases.Assets app = goshimmer.GetReleasebyVersion("v0.2.1").assets.Where(x => x.name.Contains("cli-wallet_Windows")).ToList()[0];
+                GithubObjects.Releases.Assets app = goshimmer.GetReleasebyAssetName("cli-wallet.*_Windows").assets.Where(x => Regex.Match(x.name, "cli-wallet.*_Windows").Success).ToList()[0];
                 string download_url = app.browser_download_url;
 
                 UpdateProgressBar.Visibility = Visibility.Visible;
@@ -119,6 +99,9 @@ namespace ElectricShimmer
                     wc.DownloadProgressChanged += DownloadProgressChanged;
                     wc.DownloadFileCompleted += (sender, args) =>
                     {
+                        //string t = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                        ZipFile.ExtractToDirectory(app.name, @".\");
+                        File.Delete(app.name);
                         UpdateProgressBar.Visibility = Visibility.Collapsed;
                         UpdateProgressBar.Value = 0;
                         CloseSplashView(1);
@@ -143,7 +126,7 @@ namespace ElectricShimmer
                 {
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    FileName = "cli-wallet_Windows_x86_64.exe",
+                    FileName = Config.CliExecName,
                     UseShellExecute = false,
                     CreateNoWindow = true,
                 };

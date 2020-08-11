@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace ElectricShimmer
 {
@@ -35,6 +36,28 @@ namespace ElectricShimmer
                     _releases = GetReleasesList();
 
                 return version == "latest" ? _releases[0] : _releases.Where(x => x.tag_name == version).ToList()[0];
+            }
+            catch (Exception exc)
+            {
+                Log.Write(exc.Message, LogLevel.EXCEPTION);
+                return null;
+            }
+        }
+
+        public GithubObjects.Releases GetReleasebyAssetName(string name)
+        {
+            try
+            {
+                if (_releases == null)
+                    _releases = GetReleasesList();
+
+                foreach (var release in _releases)
+                {
+                    if (release.assets.Where(x => Regex.Match(x.name, name).Success).Count() > 0)
+                        return release;
+                }
+
+                return null;
             }
             catch (Exception exc)
             {

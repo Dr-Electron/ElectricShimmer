@@ -103,7 +103,7 @@ namespace ElectricShimmer.ViewModel
                 {
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    FileName = "cli-wallet_Windows_x86_64.exe",
+                    FileName = cliWallet,
                     Arguments = "create-asset -amount " + AssetAmount + " -name " + AssetName + " -symbol " + AssetSymbol,
                     UseShellExecute = false,
                     CreateNoWindow = true,
@@ -197,7 +197,7 @@ namespace ElectricShimmer.ViewModel
                 {
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    FileName = "cli-wallet_Windows_x86_64.exe",
+                    FileName = cliWallet,
                     Arguments = "address -new",
                     UseShellExecute = false,
                     CreateNoWindow = true,
@@ -298,7 +298,7 @@ namespace ElectricShimmer.ViewModel
                 {
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    FileName = "cli-wallet_Windows_x86_64.exe",
+                    FileName = cliWallet,
                     Arguments = "send-funds -dest-addr " + SendAddress + " -color " + SendColor + " -amount " + SendAmount,
                     UseShellExecute = false,
                     CreateNoWindow = true,
@@ -397,7 +397,7 @@ namespace ElectricShimmer.ViewModel
                 {
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    FileName = "cli-wallet_Windows_x86_64.exe",
+                    FileName = cliWallet,
                     Arguments = "address -list",
                     UseShellExecute = false,
                     CreateNoWindow = true,
@@ -496,7 +496,7 @@ namespace ElectricShimmer.ViewModel
                 {
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    FileName = "cli-wallet_Windows_x86_64.exe",
+                    FileName = cliWallet,
                     Arguments = "balance",
                     UseShellExecute = false,
                     CreateNoWindow = true,

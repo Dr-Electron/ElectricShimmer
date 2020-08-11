@@ -27,7 +27,7 @@ namespace ElectricShimmer.ViewModel
                 {
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
-                    FileName = "cli-wallet_Windows_x86_64.exe",
+                    FileName = cliWallet,
                     Arguments = "request-funds ",
                     UseShellExecute = false,
                     CreateNoWindow = true,
