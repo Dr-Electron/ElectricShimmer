@@ -66,6 +66,7 @@
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn Header="BALANCE" DisplayMemberBinding="{Binding Balance}" />
+                            <GridViewColumn Header="SYMBOL" DisplayMemberBinding="{Binding Symbol}" />
                             <GridViewColumn Header="COLOR" DisplayMemberBinding="{Binding Color}" />
                             <GridViewColumn Header="TOKEN NAME" DisplayMemberBinding="{Binding Token}"/>
                         </GridView>

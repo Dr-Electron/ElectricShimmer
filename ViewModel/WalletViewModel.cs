@@ -4,6 +4,7 @@ using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 
@@ -564,11 +565,13 @@ namespace ElectricShimmer.ViewModel
                                 BalanceList = null;
                                 break;
                             }
-                            long tokenBalance = Int64.Parse(cellContent[1]);
+                            string[] cellSubContent = cellContent[1].Split(new char[] { ' ' });
+                            long tokenBalance = long.Parse(cellSubContent[0]);
                             Balance += tokenBalance;
                             balanceList.Add(new BalanceInfo(
                                 cellContent[0] == "[ OK ]" ? true : false,
                                 tokenBalance,
+                                cellSubContent.Count() < 2 ? null : cellSubContent[1],
                                 cellContent[2],
                                 cellContent[3])
                             );
@@ -624,13 +627,15 @@ namespace ElectricShimmer.ViewModel
     {
         public bool Status { get; set; }
         public long Balance { get; set; }
+        public string Symbol { get; set; }
         public string Color { get; set; }
         public string Token { get; set; }
 
-        public BalanceInfo(bool status, long balance, string color, string token )
+        public BalanceInfo(bool status, long balance, string symbol, string color, string token )
         {
             Status = status;
             Balance = balance;
+            Symbol = symbol;
             Color = color;
             Token = token;
         }
