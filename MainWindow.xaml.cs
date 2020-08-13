@@ -65,7 +65,7 @@ namespace ElectricShimmer
                         if (!Check_CLI_Wallet())
                             Install_CLI_Wallet();
                         else
-                            CloseSplashView(2);
+                            CloseSplashView(0);
                     }
 
                 }
@@ -74,7 +74,7 @@ namespace ElectricShimmer
                     if (!Check_CLI_Wallet())
                         Install_CLI_Wallet();
                     else
-                        CloseSplashView(2);
+                        CloseSplashView(0);
                 }
             }
             catch (Exception exc)
@@ -108,7 +108,7 @@ namespace ElectricShimmer
                         File.Delete(app.name);
                         UpdateProgressBar.Visibility = Visibility.Collapsed;
                         UpdateProgressBar.Value = 0;
-                        CloseSplashView(1);
+                        CloseSplashView(0);
                     };
                     wc.DownloadFileAsync(
                             new Uri(download_url),
