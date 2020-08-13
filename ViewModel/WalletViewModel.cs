@@ -105,7 +105,7 @@ namespace ElectricShimmer.ViewModel
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     FileName = cliWallet,
-                    Arguments = "create-asset -amount " + AssetAmount + " -name " + AssetName + " -symbol " + AssetSymbol,
+                    Arguments = "create-asset -amount " + AssetAmount + " -name \"" + AssetName + "\" -symbol \"" + AssetSymbol + "\"",
                     UseShellExecute = false,
                     CreateNoWindow = true,
                 };
@@ -571,7 +571,7 @@ namespace ElectricShimmer.ViewModel
                             balanceList.Add(new BalanceInfo(
                                 cellContent[0] == "[ OK ]" ? true : false,
                                 tokenBalance,
-                                cellSubContent.Count() < 2 ? null : cellSubContent[1],
+                                cellSubContent.Count() < 2 ? null : string.Join(" ", cellSubContent.Skip(1)),
                                 cellContent[2],
                                 cellContent[3])
                             );
