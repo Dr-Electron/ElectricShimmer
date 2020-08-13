@@ -1,4 +1,5 @@
 ﻿using ElectricShimmer.ViewModel;
+using Ionic.Zip;
 using MaterialDesignExtensions.Controls;
 using MaterialDesignExtensions.Model;
 using MaterialDesignThemes.Wpf;
@@ -7,13 +8,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Threading;
-using Tommy;
 
 namespace ElectricShimmer
 {
@@ -99,8 +98,13 @@ namespace ElectricShimmer
                     wc.DownloadProgressChanged += DownloadProgressChanged;
                     wc.DownloadFileCompleted += (sender, args) =>
                     {
-                        //string t = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                        ZipFile.ExtractToDirectory(app.name, @".\");
+                        using (ZipFile zipFile = ZipFile.Read(app.name))
+                        {
+                            foreach (ZipEntry zipEntry in zipFile)
+                            {
+                                zipEntry.Extract(@".\", ExtractExistingFileAction.OverwriteSilently);
+                            }
+                        }
                         File.Delete(app.name);
                         UpdateProgressBar.Visibility = Visibility.Collapsed;
                         UpdateProgressBar.Value = 0;
