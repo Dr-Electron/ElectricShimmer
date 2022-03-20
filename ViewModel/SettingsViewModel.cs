@@ -58,8 +58,15 @@ namespace ElectricShimmer.ViewModel
             }
             set
             {
-                Config config = new Config() { WebAPI = value };
-                string text = JsonConvert.SerializeObject(config, Formatting.Indented);
+                //load existing config
+                string text = File.ReadAllText("config.json");
+                Config config = JsonConvert.DeserializeObject<Config>(text);
+
+                //and only just overwrite WebAPI setting
+                config.WebAPI = value;
+
+                text = JsonConvert.SerializeObject(config, Formatting.Indented);
+                //write back
                 File.WriteAllText("config.json", text);
             }
         }
@@ -237,7 +244,7 @@ namespace ElectricShimmer.ViewModel
                     {
                         Application.Current.Dispatcher.Invoke(async () =>
                         {
-                            string[] lines = output.Split(new char[] {'\n','\r'}, StringSplitOptions.RemoveEmptyEntries);
+                            string[] lines = output.Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
                             string str = string.Join(Environment.NewLine, lines.Skip(1).ToArray());
                             MessageBoxResult result = (MessageBoxResult)await DialogHost.Show(new Controls.MaterialMessageBox(str, "Server Status", MessageBoxButton.OK), "MainDialogHost");
                         });
@@ -263,7 +270,7 @@ namespace ElectricShimmer.ViewModel
             }
         }
 
-        public SettingsViewModel() : base() 
+        public SettingsViewModel() : base()
         {
             GenerateSeedCommand = new RelayCommand(GenerateSeed);
             GetServerStatusCommand = new RelayCommand(GetServerStatus);
@@ -272,6 +279,25 @@ namespace ElectricShimmer.ViewModel
 
     public class Config
     {
-        public string WebAPI;
+        [JsonProperty("WebAPI")]
+        public string WebAPI { get; set; }
+        [JsonProperty("basicAuth")]
+        public BasicAuth BasicAuth { get; set; }
+        [JsonProperty("reuse_addresses")]
+        public bool ReuseAddresses { get; set; }
+        [JsonProperty("faucetPowDifficulty")]
+        public int FaucetPowDifficulty { get; set; }
+        [JsonProperty("assetRegistryNetwork")]
+        public string AssetRegistryNetwork { get; set; }
+    }
+
+    public class BasicAuth
+    {
+        [JsonProperty("enabled")]
+        public bool Enabled { get; set; }
+        [JsonProperty("username")]
+        public string Username { get; set; }
+        [JsonProperty("password")]
+        public string Password { get; set; }
     }
 }

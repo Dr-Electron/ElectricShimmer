@@ -557,10 +557,10 @@ namespace ElectricShimmer.ViewModel
                         string[] lines = output.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                         List<BalanceInfo> balanceList = new List<BalanceInfo>();
                         Balance = 0;
-                        for (int i = 3; i < lines.Length; i++)
+                        for (int i = 5; i < lines.Length; i++)
                         {
                             string[] cellContent = lines[i].Split(new string[] { "\t" }, StringSplitOptions.RemoveEmptyEntries);
-                            if (cellContent[0] == "<EMPTY>")
+                            if (cellContent[0].ToUpper().Trim() == "<EMPTY>")
                             {
                                 BalanceList = null;
                                 break;
@@ -569,7 +569,7 @@ namespace ElectricShimmer.ViewModel
                             long tokenBalance = long.Parse(cellSubContent[0]);
                             Balance += tokenBalance;
                             balanceList.Add(new BalanceInfo(
-                                cellContent[0] == "[ OK ]" ? true : false,
+                                cellContent[0].ToUpper().Trim() == "[ OK ]" ? true : false,
                                 tokenBalance,
                                 cellSubContent.Count() < 2 ? null : string.Join(" ", cellSubContent.Skip(1)),
                                 cellContent[2],
